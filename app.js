@@ -14,21 +14,21 @@ const express = require("express");
 const hbs = require("hbs");
 
 const app = express();
+//API Url
+const apiUrl = 'https://api.api-ninjas.com/v1/exercises?muscle=';
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 
 const capitalize = require("./utils/capitalize");
+const Fitness = require("./models/Fitness.model");
 const projectName = "healthy-exercices";
 
 app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 
 // 👇 Start handling routes here
-const indexRoutes = require("./routes/index.routes");
-app.use("/", indexRoutes);
-
-const authRoutes = require("./routes/auth.routes");
-app.use("/auth", authRoutes);
+app.use("/", require("./routes/index.routes"));
+app.use("/auth", require("./routes/auth.routes"));
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
