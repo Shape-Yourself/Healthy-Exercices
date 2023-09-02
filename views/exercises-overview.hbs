@@ -1,0 +1,28 @@
+
+<h1>Select 1 exercise for {{day}}</h1>
+
+<!-- To do:
+- add/link data in curly brackets... they're not created yet.
+Delete this comment as soon as done. -->
+
+{{#if exercises}}
+<ul>
+    {{#each exercises}}
+    <!-- exercise card in overview-->
+    <li>
+    <div>
+        <!-- data on exercise card -->
+        {{this.exercise-title}} <br>
+        {{this.duration}} <br>
+    </div>
+    </li>
+    {{/each}}
+</ul>
+{{else}}
+<p> Error: No exercises found. </p>
+{{/if}}
+
+
+
+<!-- To do in MVP2: Modal for exercise details -->
+<!-- Boostrap: <div class modal...> -->
