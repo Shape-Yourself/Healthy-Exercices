@@ -1,18 +1,41 @@
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>{{appTitle}}</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>{{appTitle}}</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
 
-  <body>
+<body>
 
-    {{{body}}}
+  <nav>
+    <!-- Logo -->
+    <!-- <img src="..." alt="Logotype"> -->
 
-    <script src="/js/script.js"></script>
-  </body>
+    <!-- If user is known = LOGGED IN => Exercise planner + Logout option. -->
+    {{#if user}}
+    <a href="/exercise-planner">Exercise planner</a>
+    <form id="logout-form" action="/logout" method="POST">
+      <button>Logout</button>
+    </form>
+    <!-- If user NOT LOGGED IN => Home link + Login/ Sign up options. -->
+    {{else}}
+    <a href="/">Home</a>
+    <a href="/login">
+      <button>Login</button>
+    </a>
+    <a href="/signup">
+      <button>Signup</button>
+    </a>
+    {{/if}}
+
+  </nav>
+
+  {{{body}}}
+
+  <script src="/js/script.js"></script>
+</body>
 
 </html>
