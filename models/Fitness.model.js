@@ -2,20 +2,18 @@ const { Schema, model } = require("mongoose");
 
 const fitnessSchema = new Schema(
   {
-    name: {
-      type: String,
-    },
+    name: String,
     force: {
-      type: String,
-      enum: ["pull", "push", "static"],
+        type: String,
+        enum: ["pull", "push", "static"],
     },
     level: {
         type: String,
         enum: ["beginner", "intermediate", "expert"]
     },
     primaryMuscles: {
-      type: [String],
-      enum: ["abdominals", "abductors", "adductors", "biceps", "calves", "chest", "forearms", "glutes", "hamstrings", "lats", "middle back", "neck", "shoulders", "quadriceps", "traps", "triceps"]
+        type: [String],
+        enum: ["abdominals", "abductors", "adductors", "biceps", "calves", "chest", "forearms", "glutes", "hamstrings", "lats", "middle back", "neck", "shoulders", "quadriceps", "traps", "triceps"]
     },
     secondaryMuscles: {
         type: [String],
@@ -33,7 +31,6 @@ const fitnessSchema = new Schema(
         type: String,
         enum: ["strength", "stretching", "plyometrics", "powerlifting", "olympic weightlifting", "strongman", "cardio"]
     },
-    _id: '64f20ca5ebc46a5385fd9c97'
   },
   {
     timestamps: true,
