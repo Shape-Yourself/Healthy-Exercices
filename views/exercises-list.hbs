@@ -1,6 +1,8 @@
 
 <h1>Select 1 exercise for {{Date.now}}</h1>
-
+    <form method=GET action="exercise-planner">
+        <input type="submit">
+    </form>
 {{#if exercises}}
 <ul>
     {{#each exercises}}
@@ -12,22 +14,18 @@
         Equipment: {{this.equipment}} <br>
         Category: {{this.category}} <br>
     </li>
-    <select name="exercise-planner">Add to your Weekly Plan
-        {{#each exercises}}
-            <option value={{this.day}}>Monday</option>
+    <select>Add to your Weekly Plan
+        
+            <option value={{this._id}}>Monday</option>
             <option value={{this._id}}>Tuesday</option>
             <option value={{this._id}}>Wednesday</option>
             <option value={{this._id}}>Thursday</option>
             <option value={{this._id}}>Friday</option>
             <option value={{this._id}}>Saturday</option>
             <option value={{this._id}}>Sunday</option>
-        {{/each}}
     </select>
-    <form action=POST>
-        <input type="submit">
-    </form>
-    
     {{/each}}
+    
 </ul>
 {{else}}
 <p> Error: No exercises found. </p>

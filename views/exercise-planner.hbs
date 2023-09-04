@@ -1,23 +1,31 @@
-
 <h1>Exercise planner</h1>
 <br>
-
-<!-- table -->
+<table>
+<thead>
+  <tr>
+    <th>Monday</th>
+    <th>Tuesday</th>
+    <th>Wednesday</th>
+    <th>Thursday</th>
+    <th>Friday</th>
+    <th>Saturday</th>
+    <th>Sunday</th>
+  </tr>
+</thead>
 <tbody>
-    {{#each days}}
-    <td>
-            <tr> {{day}} </td>
-            <tr>
-                <!-- button to VIEW exercise -->
-                <button>View</button>
-            </tr>
-            <tr>
-                <!-- button to DELETE exercise -->
-                <button>Delete</button>
-            </tr>
-    </td>
+  <tr>
+    {{#each exercises}}
+    <td>{{this.name}}</td>
+    <td>{{this._id}}</td>
+    <td>{{this._id}}</td>
+    <td>{{this._id}}</td>
+    <td>{{this._id}}</td>
+    <td>{{this._id}}</td>
+    <td>{{this._id}}</td>
     {{/each}}
+  </tr>
 </tbody>
+</table>
 
 <!-- Check week.routes for info on {{days}} etc -->
 
