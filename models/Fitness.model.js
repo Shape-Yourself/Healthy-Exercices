@@ -2,34 +2,38 @@ const { Schema, model } = require("mongoose");
 
 const fitnessSchema = new Schema(
   {
+    _id: {
+      type: Schema.Types.ObjectId,
+      $oid: "64f20ca5ebc46a5385fd9c97"
+    },
     name: String,
     force: {
-        type: String,
-        enum: ["pull", "push", "static"],
+      type: String,
+      enum: ["pull", "push", "static"],
     },
     level: {
-        type: String,
-        enum: ["beginner", "intermediate", "expert"]
+      type: String,
+      enum: ["beginner", "intermediate", "expert"]
     },
     primaryMuscles: {
-        type: [String],
-        enum: ["abdominals", "abductors", "adductors", "biceps", "calves", "chest", "forearms", "glutes", "hamstrings", "lats", "middle back", "neck", "shoulders", "quadriceps", "traps", "triceps"]
+      type: [String],
+      enum: ["abdominals", "abductors", "adductors", "biceps", "calves", "chest", "forearms", "glutes", "hamstrings", "lats", "middle back", "neck", "shoulders", "quadriceps", "traps", "triceps"]
     },
     secondaryMuscles: {
-        type: [String],
-        enum: ["abdominals", "abductors", "adductors", "biceps", "calves", "chest", "forearms", "glutes", "hamstrings", "lats","lower back", "middle back", "neck", "shoulders", "quadriceps", "traps", "triceps"]
+      type: [String],
+      enum: ["abdominals", "abductors", "adductors", "biceps", "calves", "chest", "forearms", "glutes", "hamstrings", "lats","lower back", "middle back", "neck", "shoulders", "quadriceps", "traps", "triceps"]
       },
     mechanic: {
-        type: String,
-        enum: ["compound", "isolation"]
+      type: String,
+      enum: ["compound", "isolation"]
     },
     equipment: {
-        type: String,
-        enum: ["barbell", "body only", "other", "dumbbell", "kettlebells", "cable", "machine", "medicine ball", "bands", "e-z curl bar"]
+      type: String,
+      enum: ["barbell", "body only", "other", "dumbbell", "kettlebells", "cable", "machine", "medicine ball", "bands", "e-z curl bar"]
     },
     category: {
-        type: String,
-        enum: ["strength", "stretching", "plyometrics", "powerlifting", "olympic weightlifting", "strongman", "cardio"]
+      type: String,
+      enum: ["strength", "stretching", "plyometrics", "powerlifting", "olympic weightlifting", "strongman", "cardio"]
     },
   },
   {

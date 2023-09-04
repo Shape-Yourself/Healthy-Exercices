@@ -10,11 +10,11 @@ Delete this comment as soon as done. -->
     {{#each exercises}}
     <!-- exercise card in overview-->
     <li>
-    <div>
-        <!-- data on exercise card -->
-        {{this.exercise-title}} <br>
-        {{this.duration}} <br>
-    </div>
+        <div>
+            <!-- data on exercise card -->
+            {{this.exercises.name}} <br>
+            {{this.exercises.primaryMuscles}} <br>
+        </div>
     </li>
     {{/each}}
 </ul>
