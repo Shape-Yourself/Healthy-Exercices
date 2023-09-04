@@ -4,17 +4,28 @@ const mongoose = require("mongoose");
 
 // Not sure we need this
 
+const Week = require('../models/Week.model'); // Import week model
 
-/* Not really a route, let's see where to put it */
+const  titleFromForm = '...';
+const  descriptionFromForm = '...';
 
-const emptyDay = [
-    {day: 'Monday', exercises: []},
-    {day: 'Tuesday', exercises: []},
-    {day: 'Wesday', exercises: []},
-    {day: 'Thursday', exercises: []},
-    {day: 'Friday', exercises: []},
-    {day: 'Saturday', exercises: []},
-    {day: 'Sunday', exercises: []},
-]
+// Create new instance of Week model
+const newWeek = new Week({
+    title: titleFromForm,
+    description: descriptionFromForm,
+    monday: 'objectIdMonday',
+    monday: 'objectIdMonday',
+    monday: 'objectIdMonday',
+    monday: 'objectIdMonday',
+    monday: 'objectIdMonday',
+    monday: 'objectIdMonday',
+    ...
+});
 
-res.render('week', {days: emptyDay});
+newWeek.save()
+    .then(savedWeek => {
+        console.log('New week uploaded:', savedWeek);
+    })
+    .catch(error => {
+        console.error('Error uploading week:', error);
+    });

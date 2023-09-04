@@ -15,7 +15,33 @@ router.get('/exercises-list', (req, res) => {
         console.error(error);
         res.status(500).send("An error occurred.");
       });
-  });
+});
+
+router.get('/exercise-planner', (req, res) => {
+    Fitness.find()
+      .then(exercises => {
+        res.render("exercise-planner", { exercises });
+      })
+      .catch(error => {
+        // Handle errors
+        console.error(error);
+        res.status(500).send("An error occurred.");
+      });
+});
+
+router.get('/new-plan-form', (req, res) => {
+    Fitness.find()
+      .then(exercises => {
+        res.render("new-plan-form", { exercises });
+      })
+      .catch(error => {
+        // Handle errors
+        console.error(error);
+        res.status(500).send("An error occurred.");
+      });
+});
+
+
 
 module.exports = router;
 

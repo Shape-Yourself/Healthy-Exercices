@@ -1,7 +1,7 @@
 
-<h1>Select 1 exercise for {{Date.now}}</h1>
+<h1>Select one or more exercises</h1>
     <form method=GET action="exercise-planner">
-        <input type="submit">
+        <button type="submit">Continue to Weekly Plan</button>
     </form>
 {{#if exercises}}
 <ul>
@@ -15,7 +15,7 @@
         Category: {{this.category}} <br>
     </li>
     <select>Add to your Weekly Plan
-        
+            <option value={{this._id}}></option>
             <option value={{this._id}}>Monday</option>
             <option value={{this._id}}>Tuesday</option>
             <option value={{this._id}}>Wednesday</option>
