@@ -2,10 +2,6 @@ const { Schema, model } = require("mongoose");
 
 const fitnessSchema = new Schema(
   {
-    _id: {
-      type: Schema.Types.ObjectId,
-      $oid: "64f20ca5ebc46a5385fd9c97"
-    },
     name: String,
     force: {
       type: String,
@@ -42,5 +38,6 @@ const fitnessSchema = new Schema(
 );
 
 const Fitness = model("Fitness", fitnessSchema);
+
 
 module.exports = Fitness;

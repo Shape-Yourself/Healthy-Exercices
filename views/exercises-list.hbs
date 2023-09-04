@@ -1,0 +1,39 @@
+
+<h1>Select 1 exercise for {{Date.now}}</h1>
+
+{{#if exercises}}
+<ul>
+    {{#each exercises}}
+    <li>
+        Name: {{this.name}} <br>
+        Level: {{this.level}} <br>
+        Primary Muscles: {{this.primaryMuscles}} <br>
+        Secondary Muscles: {{this.secondaryMuscles}} <br>
+        Equipment: {{this.equipment}} <br>
+        Category: {{this.category}} <br>
+    </li>
+    <select name="exercise-planner">Add to your Weekly Plan
+        {{#each exercises}}
+            <option value={{this.day}}>Monday</option>
+            <option value={{this._id}}>Tuesday</option>
+            <option value={{this._id}}>Wednesday</option>
+            <option value={{this._id}}>Thursday</option>
+            <option value={{this._id}}>Friday</option>
+            <option value={{this._id}}>Saturday</option>
+            <option value={{this._id}}>Sunday</option>
+        {{/each}}
+    </select>
+    <form action=POST>
+        <input type="submit">
+    </form>
+    
+    {{/each}}
+</ul>
+{{else}}
+<p> Error: No exercises found. </p>
+{{/if}}
+
+
+
+<!-- To do in MVP2: Modal for exercise details -->
+<!-- Boostrap: <div class modal...> -->

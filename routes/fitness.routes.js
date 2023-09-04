@@ -4,19 +4,18 @@ const mongoose = require("mongoose");
 
 const Fitness = require("../models/Fitness.model"); // import model
 
-// const axios = require('axios'); // Axios to make http request
-// const apiUrl = 'https://api.api-ninjas.com/v1/exercises?muscle='; // data to fetch
-
-// Display json exercises on "exercises-overview" hbs, using Fitness.model
-router.get('/exercises-overview', (req, res) => {
+// GET a list of exercises
+router.get('/exercises-list', (req, res) => {
     Fitness.find()
-        .then(data => {
-            res.render("views/exercises-overview.hbs", data)
-        })
-        .catch(error => {
-            next(error);
-        });
-});
+      .then(exercises => {
+        res.render("exercises-list", { exercises });
+      })
+      .catch(error => {
+        // Handle errors
+        console.error(error);
+        res.status(500).send("An error occurred.");
+      });
+  });
 
 module.exports = router;
 

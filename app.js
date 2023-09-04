@@ -23,6 +23,7 @@ require("./config")(app);
 const capitalize = require("./utils/capitalize");
 const Fitness = require("./models/Fitness.model");
 const projectName = "healthy-exercices";
+const exercises = 
 
 app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 
