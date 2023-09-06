@@ -50,6 +50,4 @@ router.get('/new-plan-form', (req, res) => {
 });
 */
 
-
 module.exports = router;
-

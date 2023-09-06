@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const Plan = require('../Models/Plan.model'); // Import Week model
+const Plan = require('../models/Plan.model'); // Import Week model
 
 // The user populates exercise-planner with the following data:
 router.post('/exercise-planner', (req, res) => {
