@@ -7,7 +7,7 @@ const exerciseSchema = new Schema ({
     },
 });
 
-const weekSchema = new Schema(
+const planSchema = new Schema(
   {
     title: {
       type: String,
@@ -36,6 +36,6 @@ const weekSchema = new Schema(
   }
 );
 
-const Week = model("Week", weekSchema);
+const Plan = model("Plan", planSchema);
 
-module.exports = Week;
+module.exports = Plan;

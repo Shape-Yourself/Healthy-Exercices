@@ -1,32 +1,77 @@
 <h1>Weekly Plan</h1>
 <br>
-<table>
-<thead>
-  <tr>
-    <th>Monday</th>
-    <th>Tuesday</th>
-    <th>Wednesday</th>
-    <th>Thursday</th>
-    <th>Friday</th>
-    <th>Saturday</th>
-    <th>Sunday</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    {{#each exercises}}
-    <td>{{this.name}}</td>
-    <td>{{this.name}}</td>
-    <td>{{this.name}}</td>
-    <td>{{this.name}}</td>
-    <td>{{this.name}}</td>
-    <td>{{this.name}}</td>
-    <td>{{this.name}}</td>
-    {{/each}}
-  </tr>
-</tbody>
-</table>
 
-<!-- Check week.routes for info on {{days}} etc -->
+<ul>
+  {{#each plans}}
+  <li>
+    <!-- Make data for Title & Descr available -->
+    {{this.title}}
+    {{this.description}}
+
+    <!-- Days incl. exercises -->
+    <table>
+
+        <tr>
+          <td>Monday</td>
+          <td>
+            {{this.monday.exercise.name}}
+          </td>
+        </tr>
+
+        <tr>
+          <td>Monday</td>
+          <td>
+            {{this.monday.exercise.name}}
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Monday</td>
+          <td>
+            {{this.monday.exercise.name}}
+          </td>
+        </tr>
+
+        <tr>
+          <td>Monday</td>
+          <td>
+            {{this.monday.exercise.name}}
+          </td>
+        </tr>
+
+        <tr>
+          <td>Monday</td>
+          <td>
+            {{this.monday.exercise.name}}
+          </td>
+        </tr>
+
+        <tr>
+          <td>Monday</td>
+          <td>
+            {{this.monday.exercise.name}}
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Monday</td>
+          <td>
+            {{this.monday.exercise.name}}
+          </td>
+        </tr>
+
+    </table>
+
+
+  </li>
+  {{/each}}
+</ul>
+
+<a href="new-plan-form.hbs">
+  <button>Create new plan</button>
+</a>
+
+
+<!-- Check plan.routes for info on {{days}} etc -->
 
 

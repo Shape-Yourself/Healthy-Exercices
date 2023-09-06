@@ -21,16 +21,22 @@ const apiUrl = 'https://api.api-ninjas.com/v1/exercises?muscle=';
 require("./config")(app);
 
 const capitalize = require("./utils/capitalize");
-const Fitness = require("./models/Fitness.model");
 const projectName = "healthy-exercices";
-const exercises = 
 
 app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
+
+app.use((req, res, next) => {
+    if(req.session.currentUser){
+        app.locals.user =req.session.currentUser
+    }
+    next()
+})
 
 // 👇 Start handling routes here
 app.use("/", require("./routes/index.routes"));
 app.use("/auth", require("./routes/auth.routes"));
 app.use("/", require("./routes/fitness.routes"));
+app.use("/plans", require('./routes/plan.routes'))
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
