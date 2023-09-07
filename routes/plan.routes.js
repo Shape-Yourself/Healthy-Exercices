@@ -2,60 +2,148 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const Plan = require('../models/Plan.model'); // Import Week model
+const Fitness = require("../models/Fitness.model"); // import model
+const isLoggedIn = require('..')
 
-// The user populates exercise-planner with the following data:
+
+// Step 0a - Exercise planner (Home when logged in)
+router.get('/exercise-planner', (req, res) => {
+    const planId = req.session // ??
+    const userId = req.session.currentUser._id;
+
+    // Find weekly plans that the user created
+    Plan.find({userId})
+        // Then render the exercise planner hbs...
+        // and pass the "plans" data to it (now available as a variable in the exercise-planner hbs)
+        .then((plans) => {
+            res.render("exercise-planner", { plans })
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+});
+
+// Step 0b - Exercise planner - DELETE plan
+/*
 router.post('/exercise-planner', (req, res) => {
-    //fetch the input from these fields
+    const planId = req.session // ??
+    const userId = req.session.currentUser._id;
+
+    // Find weekly plans that the user created
+    Plan.findOneAndDelete({planId})
+        // Then render the exercise planner hbs...
+        // and pass the "plans" data to it (now available as a variable in the exercise-planner hbs)
+        .then((plans) => {
+            ...
+        })
+        .catch((error) => {
+            console.error(error);
+            res.status(500).send("An error occurred. Deleting the plan failed.")
+        })
+});
+*/
+
+// ------------------------------------------------------
+
+// Step 1a - Show new plan form
+router.get("/exercise-planner/create", (req, res, next) => {
+    res.render("new-plan-form")
+});
+
+// Step 1b - Create new Plan
+router.post('/exercise-planner/create', (req, res) => {
+    // data sent as the POST request's body
     const title = req.body.title;
     const description = req.body.description;
     const selectedExercises = req.body.selectedExercises;
+    const userId = req.session.currentUser._id;
 
-    let newPlan;
+    // After submitting in "new form" hbs, create new Plan
+    Plan.create({ title, description, userId, selectedExercises: [] })
 
-    // Create & save new Plan
-    Plan.create({ title, description })
-        .then(createdPlan => {
-            // Redirect to url display
-            newPlan = createdPlan;
+        .then((newPlan) => {
+            // Plan model update
             // Redirect to URL displaying exercise list & new plan
-            res.redirect(`/exercise-list/${newPlan._id}`);
+            res.redirect(`/exercises-list/${newPlan._id}`)
         })
-        .catch(error => {
+        .catch((error) => {
             console.error(error);
-            res.status(500).send('An error occurred.');
-        });
+            res.status(500).send("An error occurred. Step 1, 'Create new plan', failed")
+        })
+});
+
+// ------------------------------------------------------
+
+// 2a - Show link with list of exercises // TODO: Why planId here?
+router.get('/exercises-list/:planId', (req, res) => {
+    const {planId} = req.params
+
+    // Find & display all exercises
+    Fitness.find()
+      .then(exercises => {
+        res.render("exercises-list", { exercises, planId });
+        // each exercise gets a unique _id field in MDB
+      })
+      .catch(error => {
+        // Handle errors
+        console.error(error);
+        res.status(500).send("An error occurred. Step 'Show link with list of exercises', failed.");
+      })
     
-    // Add selection in exercises-list.
-    // Find plan with the id newPlan._id
-    Plan.findById(newPlan._id)
-        .then(plan => {
-            plan.selectedExercises = req.body.selectedExercises;
-            
-            return plan.save();
-        })  
-        .then(updatedPlan => {
-            // TODO: success handling
-        })
-        .catch(error => {
-            console.error(error);
-        });
 });
 
+// Step 2b - Select exercises & send data // handling data from form /exercises-list/:planId'
+router.post('/exercises-list/:planId', (req, res) => {
+    const { planId } = req.params;
+    const { selectedExercises } = req.body;
 
-// If user makes GET request to '/exercise-planner'...
-router.get('/exercise-planner', (req, res) => {
-    // ... all weekly plans get retrieved from MondoDB database
-    // Plan.find ({userId}) -> sth similar to filter weekly plans
-    Plan.find()
-        // Then render the exercise planner hbs...
-        // and pass the "plans" data to it (now available as a variable in the hbs
-        .then(plans => {
-            res.render("exercise-planner", { plans });
+    // Find plan we're using & update it (by id, updates to apply)
+    Plan.findByIdAndUpdate(planId, { selectedExercises })
+        .then((updatedPlan) => {
+            // Redirect back to exercise
+            res.redirect('/exercise-planner')
         })
-        .catch(error => {
-            console.error(error);
-        });
+        .catch((error) => {
+            console.error(error)
+            res.status(500).send("An error occurred. Step 'Select exercises & send data', failed")
+        })
 });
+
+// ------------------------------------------------------
+
+
+// Step 2c - get the id of the specific plan
+// ...
+
+
+// ------------------------------------------------------
+
+
+// Step 3 - needs to push ids of exercises into plan _>  selectedExercises: []
+
+
+
+/*
+// Step 2x - Select exercises & send data
+router.post('/exercise-planner/:planId', (req, res) => {
+    const { planId } = req.params;
+
+    // Find plan by Id in the link
+    Plan.findById(planId)
+        .then((plan) => {
+            res.render('select-exercises', { plan })
+        })
+        .catch((error) => {
+            console.error(error)
+            res.status(500).send('An error occurred. Step 2a, "Select exercises", failed')
+        })
+});
+*/
+
+
+// Post request for exercise-planner
+// Create new exercise
+// Delete exercise
 
 module.exports = router;
 

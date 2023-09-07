@@ -1,10 +1,16 @@
 const { Schema, model } = require("mongoose");
 
-const exerciseSchema = new Schema ({
-    exercise: {
-        type: Schema.Types.ObjectId,
-        ref: "Fitness",
-    },
+const exerciseSchema = new Schema({
+  day: {
+    type: String,
+    required: true,
+    enum: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+  },
+  exercise: {
+    // Schema refers to Fitness model. Therefore "exercise" stores an objectId from Fitness.
+    type: Schema.Types.ObjectId,
+    ref: "Fitness",
+  },
 });
 
 const planSchema = new Schema(
@@ -22,13 +28,14 @@ const planSchema = new Schema(
       trim: true,
       lowercase: true,
     },
-    monday: exerciseSchema,
-    tuesday: exerciseSchema,
-    wednesday: exerciseSchema,
-    thursday: exerciseSchema,
-    friday: exerciseSchema,
-    saturday: exerciseSchema,
-    sunday: exerciseSchema,
+    // Store user creating plan
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true
+    },
+    // Store selected exercises (incl. days) as an array (value) in selectedExercises (key) 
+    selectedExercises: [exerciseSchema],
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
