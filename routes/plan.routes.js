@@ -64,7 +64,7 @@ router.post('/exercise-planner/create', (req, res) => {
         .then((newPlan) => {
             // Plan model update
             // Redirect to URL displaying exercise list & new plan
-            res.redirect(`/exercises-list/${newPlan._id}`)
+            res.redirect(`/plan/exercises-list/${newPlan._id}`)
         })
         .catch((error) => {
             console.error(error);
