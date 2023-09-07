@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>{{appTitle}}</title>
-  <link rel="stylesheet" href="../styles.css" />
 </head>
 
 <body>
@@ -27,21 +26,17 @@
     <a href="/auth/logout">
     <button >Logout</button></a>
     <!-- plans/ -> see app.js -->
-    <a href="/plans/exercise-planner">
+    <a href="/plan/exercise-planner">
     <button >Weekly Plan</button></a>
-    <a href="/new-plan-form">
+    <a href="/plan/exercise-planner/create">
     <button >Create a weekly plan</button></a>
-    <a href="/exercises-list">
+    <a href="/exercises-list/">
     <button >Exercises list</button></a>
     {{/unless}}
 
   </nav>
 
   {{{body}}}
-
-  <script src="/js/script.js"></script>
-  <script src="/routes/routes.js"></script>
-  <script src="/app.js"></script>
 </body>
 
 </html>

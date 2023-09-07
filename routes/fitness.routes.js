@@ -1,8 +1,11 @@
+/*
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const Fitness = require("../models/Fitness.model"); // import model
 
+
+/* Commented out as Fitness route now in the plan.routes
 
 // GET a list of exercises
 router.get('/exercises-list', (req, res) => {
@@ -17,6 +20,7 @@ router.get('/exercises-list', (req, res) => {
         res.status(500).send("An error occurred.");
       });
 });
+*/
 
 
 /* Commented out as exercise-planner shall now show Plan model
@@ -48,8 +52,10 @@ router.get('/new-plan-form', (req, res) => {
         res.status(500).send("An error occurred.");
       });
 });
-*/
+
 
 
 module.exports = router;
 
+
+*/

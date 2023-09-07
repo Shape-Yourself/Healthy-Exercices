@@ -10,64 +10,25 @@
 
     <!-- Days incl. exercises -->
     <table>
-
-        <tr>
-          <td>Monday</td>
-          <td>
-            {{this.monday.exercise.name}}
-          </td>
-        </tr>
-
-        <tr>
-          <td>Monday</td>
-          <td>
-            {{this.monday.exercise.name}}
-          </td>
-        </tr>
-        
-        <tr>
-          <td>Monday</td>
-          <td>
-            {{this.monday.exercise.name}}
-          </td>
-        </tr>
-
-        <tr>
-          <td>Monday</td>
-          <td>
-            {{this.monday.exercise.name}}
-          </td>
-        </tr>
-
-        <tr>
-          <td>Monday</td>
-          <td>
-            {{this.monday.exercise.name}}
-          </td>
-        </tr>
-
-        <tr>
-          <td>Monday</td>
-          <td>
-            {{this.monday.exercise.name}}
-          </td>
-        </tr>
-        
-        <tr>
-          <td>Monday</td>
-          <td>
-            {{this.monday.exercise.name}}
-          </td>
-        </tr>
-
+      {{#each this.selectedExercises}} <!-- Just renders all selected exercises, not by day -->
+      <tr>
+        <!-- TODO: define day property -->
+        <td>{{this.day}}</td>
+      </tr>
+      <tr>
+        <td> {{this.name}} </td>
+      </tr>
+      <tr>
+        <td> <button type="submit">Delete plan</button> </td>
+      </tr>
+      {{/each}}
     </table>
-
 
   </li>
   {{/each}}
 </ul>
 
-<a href="new-plan-form.hbs">
+<a href="/exercise-plan/create">
   <button>Create new plan</button>
 </a>
 
