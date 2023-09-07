@@ -92,10 +92,13 @@ router.get('/exercises-list/:planId', (req, res) => {
     
 });
 
-// Step 2b - Select exercises & send data // handling data from form /exercises-list/:planId'
+// Step 2b - Select exercises & send data to updated plan
 router.post('/exercises-list/:planId', (req, res) => {
     const { planId } = req.params;
     const { selectedExercises } = req.body;
+
+    // "selectedExercises" is so far an array, and not individual exercises
+    // Steps?
 
     // Find plan we're using & update it (by id, updates to apply)
     Plan.findByIdAndUpdate(planId, { selectedExercises })
