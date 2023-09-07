@@ -134,7 +134,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
           // Remove the password field
           delete req.session.currentUser.password;
 
-          res.redirect("/");
+          res.redirect("/plans/exercise-planner");
         })
         .catch((err) => next(err)); // In this case, we send error handling to the error handling middleware.
     })
@@ -152,5 +152,11 @@ router.get("/logout", isLoggedIn, (req, res) => {
     res.redirect("/");
   });
 });
+
+router.get("/account-deletion", (req, res, next) => {
+  User.findByIdAndDelete(userId)
+  .then(() => res.redirect('/'))
+  .catch(error => next(error));
+})
 
 module.exports = router;

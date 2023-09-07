@@ -14,8 +14,6 @@ const express = require("express");
 const hbs = require("hbs");
 
 const app = express();
-//API Url
-const apiUrl = 'https://api.api-ninjas.com/v1/exercises?muscle=';
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
