@@ -23,17 +23,27 @@ const projectName = "healthy-exercices";
 
 app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 
+
+//Former:
+// app.use((req, res, next) => {
+//     if(req.session.currentUser){
+//         app.locals.user =req.session.currentUser
+//     }
+//     next()
+// })
+
+//New:
 app.use((req, res, next) => {
     if(req.session.currentUser){
-        app.locals.user =req.session.currentUser
+        res.locals.user = req.session.currentUser;
     }
-    next()
-})
+    next();
+});
 
 // 👇 Start handling routes here
 app.use("/", require("./routes/index.routes"));
 app.use("/auth", require("./routes/auth.routes"));
-// app.use("/", require("./routes/fitness.routes"));
+// app.use("/", require("./routes/fitness.routes")); // Not in use currently
 app.use("/plan", require('./routes/plan.routes'));
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes

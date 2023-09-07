@@ -153,10 +153,4 @@ router.get("/logout", isLoggedIn, (req, res) => {
   });
 });
 
-router.get("/account-deletion", (req, res, next) => {
-  User.findByIdAndDelete(userId)
-  .then(() => res.redirect('/'))
-  .catch(error => next(error));
-})
-
 module.exports = router;

@@ -25,7 +25,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          {{!-- {{#unless user}} --}}
+          {{#unless user}}
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
@@ -35,7 +35,7 @@
           <li class="nav-item">
             <a class="nav-link" href="/auth/signup">Signup</a>
           </li>
-          {{!-- {{else}} --}}
+          {{else}}
           <li class="nav-item">
             <a class="nav-link" href="/">Home</a>
           </li>
@@ -52,11 +52,7 @@
           <li class="nav-item">
             <a class="nav-link" href="/exercises-list">Exercises list</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/account-deletion">
-              <button type="button" class="btn btn-warning">Delete account</button></a>
-          </li>
-          {{!-- {{/unless}} --}}
+          {{/unless}}
         </ul>
       </div>
     </div>
