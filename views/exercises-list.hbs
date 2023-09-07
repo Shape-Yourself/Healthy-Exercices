@@ -1,38 +1,46 @@
+<section style="padding: 3%">
 
 <h1>Select one or more exercises</h1>
-   <form method="POST" action="/exercises-list/{{planId}}">
-       <button type="submit" id="step2Continue">Selection finished</button>
- 
-{{#if exercises}}
-<ul>
-   {{#each exercises}}
-   <li>
-       Name: {{name}} <br>
-       Level: {{level}} <br>
-       Primary Muscles: {{primaryMuscles}} <br>
-       Secondary Muscles: {{secondaryMuscles}} <br>
-       Equipment: {{equipment}} <br>
-       Category: {{category}} <br>
-   </li>
-   <!-- _id is the current exercise ID in the iteration -->
-   <!-- it's automatically generated, see fitness.routes.js -->
-   <select name="selectedExercises[{{_id}}]">Add to your Weekly Plan
-           <option value=""></option>
-           <option value="{{_id}}">Monday</option>
-           <option value="{{_id}}">Tuesday</option>
-           <option value="{{_id}}">Wednesday</option>
-           <option value="{{_id}}">Thursday</option>
-           <option value="{{_id}}">Friday</option>
-           <option value="{{_id}}">Saturday</option>
-           <option value="{{_id}}">Sunday</option>
-   </select>
-   {{/each}}
-  
-</ul>
-{{else}}
-<p> Error: No exercises found. </p>
-{{/if}}
+<br>
+
+<form method="POST" action="/exercises-list/{{planId}}">
+    <button type="submit" id="step2Continue">Selection finished</button>
+
+    {{#if exercises}}
+    <ul>
+        {{#each exercises}}
+        <li>
+            Name: {{name}} <br>
+            Level: {{level}} <br>
+            Primary Muscles: {{primaryMuscles}} <br>
+            Secondary Muscles: {{secondaryMuscles}} <br>
+            Equipment: {{equipment}} <br>
+            Category: {{category}} <br>
+        </li>
+        <!-- _id is the current exercise ID in the iteration. When form gets submitted, 
+   the 'exercise' property of each object in the 'selectedEx' array will be populated with the
+   correct exercise id from the selected option's value -->
+        <!-- it's automatically generated, see fitness.routes.js -->
+        <select name="selectedExercises[{{@index}}][{{_id}}]">Add to your Weekly Plan
+            <option value=""></option>
+            <option value="{{_id}}">Monday</option>
+            <option value="{{_id}}">Tuesday</option>
+            <option value="{{_id}}">Wednesday</option>
+            <option value="{{_id}}">Thursday</option>
+            <option value="{{_id}}">Friday</option>
+            <option value="{{_id}}">Saturday</option>
+            <option value="{{_id}}">Sunday</option>
+        </select>
+        {{/each}}
+
+    </ul>
+    {{else}}
+    <p> Error: No exercises found. </p>
+    {{/if}}
 </form>
+
+</section>
+
 
 
 <!-- To do in MVP2: Modal for exercise details -->

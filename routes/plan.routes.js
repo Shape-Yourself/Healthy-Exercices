@@ -3,23 +3,27 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const Plan = require('../models/Plan.model'); // Import Week model
 const Fitness = require("../models/Fitness.model"); // import model
-const isLoggedIn = require('..')
+const isLoggedIn = require('../middleware/isLoggedIn')
 
 
 // Step 0a - Exercise planner (Home when logged in)
 router.get('/exercise-planner', (req, res) => {
+    // req.session is an object where we can store data as long as the session is active
     const planId = req.session // ??
     const userId = req.session.currentUser._id;
 
     // Find weekly plans that the user created
+    // If empty, the .populate does nothing.
     Plan.find({userId})
+        .populate('selectedExercises.exercise')
         // Then render the exercise planner hbs...
         // and pass the "plans" data to it (now available as a variable in the exercise-planner hbs)
         .then((plans) => {
             res.render("exercise-planner", { plans })
         })
         .catch((error) => {
-            console.error(error)
+            console.error(error);
+            res.status(500).send("An error occurred. Step 0a, 'Render ecercise planner', failed")
         })
 });
 
@@ -64,7 +68,7 @@ router.post('/exercise-planner/create', (req, res) => {
         .then((newPlan) => {
             // Plan model update
             // Redirect to URL displaying exercise list & new plan
-            res.redirect(`/plan/exercises-list/${newPlan._id}`)
+            res.redirect(`/exercises-list/${newPlan._id}`)
         })
         .catch((error) => {
             console.error(error);
