@@ -5,6 +5,7 @@
 
 
 {{#each plans}}
+<div class="bg-light mt-4 mb-4 p-4">
 <br>
 <!-- Make data for Title & Descr available -->
 {{this.title}}
@@ -29,14 +30,15 @@
 </table>
 
 <form method="POST" action="/plan/exercise-planner/delete/{{this._id}}">
-  <button type="submit">Delete plan</button>
+  <button type="submit" class="btn btn-danger">Delete plan</button>
 </form>
 <br>
+</div>
 {{/each}}
 
 
 <a href="/plan/exercise-planner/create">
-  <button>Create new plan</button>
+  <button class="btn btn-secondary mt-4">Create new plan</button>
 </a>
 
 
