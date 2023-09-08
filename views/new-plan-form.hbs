@@ -6,13 +6,15 @@
     <br>
     <form method="POST" action="/plan/exercise-planner/create">
 
-        <label for="newPlan-titleId">Title</label>
-        <input type="text" id="newPlan-titleId" name="title" placeholder="Ready for summer!">
+        <label for="newPlan-titleId">Title</label> <br>
+        <input type="text" id="newPlan-titleId" name="title" placeholder="Ready for summer!" class="w-90">
 
         <br> <br>
 
-        <label for="new-plan-description-id">Description</label>
-        <input type="text" id="new-plan-description-id" name="description" placeholder="Awesome description">
+        <div class="form-group">
+            <label for="new-plan-description-id">Description</label> <br>
+            <textarea class="form-control" id="new-plan-description-id" rows="4" name="description" placeholder="Awesome description"></textarea>
+        </div>
 
         <br> <br>
 
