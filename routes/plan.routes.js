@@ -9,17 +9,17 @@ const isLoggedIn = require('../middleware/isLoggedIn')
 // Step 0a - Exercise planner (Home when logged in)
 router.get('/exercise-planner', (req, res) => {
     // req.session is an object where we can store data as long as the session is active
-    const planId = req.session // ??
     const userId = req.session.currentUser._id;
 
     // Find weekly plans that the user created
     // If empty, the .populate does nothing.
     Plan.find({userId})
+
         .populate('selectedExercises.exercise')
         // Then render the exercise planner hbs...
         // and pass the "plans" data to it (now available as a variable in the exercise-planner hbs)
         .then((plans) => {
-            res.render("exercise-planner", { plans })
+            res.render("exercise-planner", { plans });
         })
         .catch((error) => {
             console.error(error);
@@ -28,24 +28,22 @@ router.get('/exercise-planner', (req, res) => {
 });
 
 // Step 0b - Exercise planner - DELETE plan
-/*
-router.post('/exercise-planner', (req, res) => {
-    const planId = req.session // ??
+router.post('/exercise-planner/delete/:planId', (req, res) => {
+    const planId = req.params.planId;
     const userId = req.session.currentUser._id;
 
     // Find weekly plans that the user created
-    Plan.findOneAndDelete({planId})
+    Plan.findOneAndDelete({ _id: planId, userId })
         // Then render the exercise planner hbs...
         // and pass the "plans" data to it (now available as a variable in the exercise-planner hbs)
-        .then((plans) => {
-            ...
+        .then(() => {
+            res.redirect('/plan/exercise-planner');
         })
         .catch((error) => {
             console.error(error);
             res.status(500).send("An error occurred. Deleting the plan failed.")
         })
 });
-*/
 
 // ------------------------------------------------------
 
@@ -66,6 +64,7 @@ router.post('/exercise-planner/create', (req, res) => {
     Plan.create({ title, description, userId, selectedExercises: [] })
 
         .then((newPlan) => {
+            req.session.planId = newPlan._id;
             // Plan model update
             // Redirect to URL displaying exercise list & new plan
             res.redirect(`/exercises-list/${newPlan._id}`)
@@ -84,11 +83,12 @@ router.get('/exercises-list/:planId', (req, res) => {
 
     // Find & display all exercises
     Fitness.find()
-      .then(exercises => {
+      .then((exercises) => {
         res.render("exercises-list", { exercises, planId });
+         console.log('Heyy')
         // each exercise gets a unique _id field in MDB
       })
-      .catch(error => {
+      .catch((error) => {
         // Handle errors
         console.error(error);
         res.status(500).send("An error occurred. Step 'Show link with list of exercises', failed.");
@@ -99,16 +99,18 @@ router.get('/exercises-list/:planId', (req, res) => {
 // Step 2b - Select exercises & send data to updated plan
 router.post('/exercises-list/:planId', (req, res) => {
     const { planId } = req.params;
-    const { selectedExercises } = req.body;
-
-    // "selectedExercises" is so far an array, and not individual exercises
-    // Steps?
+    const splitSelectedExercises = req.body.selectedExercises.map((item) => {
+        // split each selected Exercise array item into day & exercise id
+        const [day, exerciseId] = item.split('_');
+        // ... new object for each with day & exercise
+        return { day, exercise: exerciseId };
+    });
 
     // Find plan we're using & update it (by id, updates to apply)
-    Plan.findByIdAndUpdate(planId, { selectedExercises })
+    Plan.findByIdAndUpdate(planId, { selectedExercises: splitSelectedExercises })
         .then((updatedPlan) => {
             // Redirect back to exercise
-            res.redirect('/exercise-planner')
+            res.redirect('/plan/exercise-planner')
         })
         .catch((error) => {
             console.error(error)
@@ -128,6 +130,8 @@ router.post('/exercises-list/:planId', (req, res) => {
 
 // Step 3 - needs to push ids of exercises into plan _>  selectedExercises: []
 
+
+// ------------------------------------------------------
 
 
 /*

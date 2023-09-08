@@ -3,7 +3,7 @@
 <h1>Select one or more exercises</h1>
 <br>
 
-<form method="POST" action="/exercises-list/{{planId}}">
+<form method="POST" action="/plan/exercises-list/{{planId}}">
     <button type="submit" id="step2Continue">Selection finished</button>
 
     {{#if exercises}}
@@ -18,18 +18,18 @@
             Category: {{category}} <br>
         </li>
         <!-- _id is the current exercise ID in the iteration. When form gets submitted, 
-   the 'exercise' property of each object in the 'selectedEx' array will be populated with the
-   correct exercise id from the selected option's value -->
+        the 'exercise' property of each object in the 'selectedEx' array will be populated with the
+        correct exercise id from the selected option's value -->
         <!-- it's automatically generated, see fitness.routes.js -->
-        <select name="selectedExercises[{{@index}}][{{_id}}]">Add to your Weekly Plan
+        <select name="selectedExercises[{{@index}}].exercise">Add to your Weekly Plan
             <option value=""></option>
-            <option value="{{_id}}">Monday</option>
-            <option value="{{_id}}">Tuesday</option>
-            <option value="{{_id}}">Wednesday</option>
-            <option value="{{_id}}">Thursday</option>
-            <option value="{{_id}}">Friday</option>
-            <option value="{{_id}}">Saturday</option>
-            <option value="{{_id}}">Sunday</option>
+            <option value="Monday_{{_id}}">Monday</option>
+            <option value="Tuesday_{{_id}}">Tuesday</option>
+            <option value="Wednesday_{{_id}}">Wednesday</option>
+            <option value="Thursday_{{_id}}">Thursday</option>
+            <option value="Friday_{{_id}}">Friday</option>
+            <option value="Saturday_{{_id}}">Saturday</option>
+            <option value="Sunday_{{_id}}">Sunday</option>
         </select>
         {{/each}}
 

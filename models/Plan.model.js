@@ -34,7 +34,7 @@ const planSchema = new Schema(
       ref: "User",
       required: true
     },
-    // Store selected exercises (incl. days) as an array (value) in selectedExercises (key) 
+    // Store selected exercises (with corresponding days) as an array (value) in selectedExercises (key) 
     selectedExercises: [exerciseSchema],
   },
   {

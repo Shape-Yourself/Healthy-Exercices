@@ -10,7 +10,6 @@
 {{this.title}}
 {{this.description}}
 
-
 <!-- Days incl. exercises -->
 <table class="table">
   <!-- TODO: Needs to be ONE selected exercise, not the whole object -->
@@ -22,17 +21,16 @@
     </tr>
   </thead>
 
-  </tr>
   <tr>
     <!-- previously: this.name -->
     <td> {{this.exercise.name}} </td>
   </tr>
-  <tr>
-    <td> <button type="submit">Delete plan</button> </td>
-  </tr>
   {{/each}}
-
 </table>
+
+<form method="POST" action="/plan/exercise-planner/delete/{{this._id}}">
+  <button type="submit">Delete plan</button>
+</form>
 <br>
 {{/each}}
 
