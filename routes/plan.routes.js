@@ -67,7 +67,7 @@ router.post('/exercise-planner/create', (req, res) => {
             req.session.planId = newPlan._id;
             // Plan model update
             // Redirect to URL displaying exercise list & new plan
-            res.redirect(`/exercises-list/${newPlan._id}`)
+            res.redirect(`/plan/exercises-list/${newPlan._id}`)
         })
         .catch((error) => {
             console.error(error);
@@ -85,7 +85,6 @@ router.get('/exercises-list/:planId', (req, res) => {
     Fitness.find()
       .then((exercises) => {
         res.render("exercises-list", { exercises, planId });
-         console.log('Heyy')
         // each exercise gets a unique _id field in MDB
       })
       .catch((error) => {
