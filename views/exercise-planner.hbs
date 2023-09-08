@@ -8,8 +8,10 @@
 <div class="bg-light mt-4 mb-4 p-4">
 <br>
 <!-- Make data for Title & Descr available -->
-{{this.title}}
+<div class="pb-4">
+<h2>{{this.title}}</h2>
 {{this.description}}
+</div>
 
 <!-- Days incl. exercises -->
 <table class="table">
@@ -23,8 +25,8 @@
   </thead>
 
   <tr>
-    <!-- previously: this.name -->
-    <td> {{this.exercise.name}} </td>
+    <!-- Name of exercise -->
+    <td> {{this.name}} </td>
   </tr>
   {{/each}}
 </table>

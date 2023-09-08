@@ -98,7 +98,16 @@ router.get('/exercises-list/:planId', (req, res) => {
 // Step 2b - Select exercises & send data to updated plan
 router.post('/exercises-list/:planId', (req, res) => {
     const { planId } = req.params;
-    const splitSelectedExercises = req.body.selectedExercises.map((item) => {
+    selectedExercises = req.body.selectedExercises;
+
+    // error handling if selectedExercises not available
+    if (!selectedExercises) {
+        return res.status(400).send("Error: selectedExercises are not available.")
+    }
+    selectedExercises = selectedExercises.filter(item => item);
+    console.log('selectedExercises:', selectedExercises);
+
+    const splitSelectedExercises = selectedExercises.map((item) => {
         // split each selected Exercise array item into day & exercise id
         const [day, exerciseId] = item.split('_');
         // ... new object for each with day & exercise

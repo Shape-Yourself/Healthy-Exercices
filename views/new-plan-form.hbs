@@ -1,17 +1,23 @@
 <section style="padding: 3%">
     <h1>Create a new weekly plan</h1>
     <br>
-
+    <div class="bg-light mt-4 mb-4 p-4">
     <h3>About your new plan</h3>
+    <br>
     <form method="POST" action="/plan/exercise-planner/create">
 
         <label for="newPlan-titleId">Title</label>
         <input type="text" id="newPlan-titleId" name="title" placeholder="Ready for summer!">
 
+        <br> <br>
+
         <label for="new-plan-description-id">Description</label>
         <input type="text" id="new-plan-description-id" name="description" placeholder="Awesome description">
 
-        <button type="submit">Continue</button>
+        <br> <br>
 
-    </form> <br>
+        <button type="submit" class="btn btn-dark"> Continue</button>
+
+    </form>
+    </div>
 </section>

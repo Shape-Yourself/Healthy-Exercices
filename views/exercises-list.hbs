@@ -24,7 +24,9 @@
         the 'exercise' property of each object in the 'selectedEx' array will be populated with the
         correct exercise id from the selected option's value -->
                 <!-- it's automatically generated, see fitness.routes.js -->
-                <select name="selectedExercises[{{@index}}].exercise">Add to your Weekly Plan
+                {{!-- Previously:  --}}
+                {{!-- <select name="selectedExercises[{{@index}}].exercise">Add to your Weekly Plan --}}
+                <select name="selectedExercises">Add to your Weekly Plan
                     <option value=""></option>
                     <option value="Monday_{{_id}}">Monday</option>
                     <option value="Tuesday_{{_id}}">Tuesday</option>
