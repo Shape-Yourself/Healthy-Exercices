@@ -2,24 +2,28 @@
     <h1>Create a new weekly plan</h1>
     <br>
     <div class="bg-light mt-4 mb-4 p-4">
-    <h3>About your new plan</h3>
-    <br>
-    <form method="POST" action="/plan/exercise-planner/create">
+        <h3>About your new plan</h3>
+        <br>
+        <form method="POST" action="/plan/exercise-planner/create">
 
-        <label for="newPlan-titleId">Title</label> <br>
-        <input type="text" id="newPlan-titleId" name="title" placeholder="Ready for summer!" class="w-90">
+            <label for="newPlan-titleId">Title</label> <br>
+            <input type="text" id="newPlan-titleId" name="title" placeholder="Ready for summer!" class="w-90">
 
-        <br> <br>
+            <br> <br>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-8">
+                        <label for="new-plan-description-id">Description</label> <br>
+                        <textarea class="form-control col-6" id="new-plan-description-id" rows="4" name="description"
+                            placeholder="Awesome description"></textarea>
+                    </div>
+                </div>
+            </div>
 
-        <div class="form-group">
-            <label for="new-plan-description-id">Description</label> <br>
-            <textarea class="form-control" id="new-plan-description-id" rows="4" name="description" placeholder="Awesome description"></textarea>
-        </div>
+            <br> <br>
 
-        <br> <br>
+            <button type="submit" class="btn btn-dark"> Continue</button>
 
-        <button type="submit" class="btn btn-dark"> Continue</button>
-
-    </form>
+        </form>
     </div>
 </section>

@@ -126,43 +126,5 @@ router.post('/exercises-list/:planId', (req, res) => {
         })
 });
 
-// ------------------------------------------------------
-
-
-// Step 2c - get the id of the specific plan
-// ...
-
-
-// ------------------------------------------------------
-
-
-// Step 3 - needs to push ids of exercises into plan _>  selectedExercises: []
-
-
-// ------------------------------------------------------
-
-
-/*
-// Step 2x - Select exercises & send data
-router.post('/exercise-planner/:planId', (req, res) => {
-    const { planId } = req.params;
-
-    // Find plan by Id in the link
-    Plan.findById(planId)
-        .then((plan) => {
-            res.render('select-exercises', { plan })
-        })
-        .catch((error) => {
-            console.error(error)
-            res.status(500).send('An error occurred. Step 2a, "Select exercises", failed')
-        })
-});
-*/
-
-
-// Post request for exercise-planner
-// Create new exercise
-// Delete exercise
-
 module.exports = router;
 

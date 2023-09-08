@@ -9,7 +9,7 @@
 <br>
 <!-- Make data for Title & Descr available -->
 <div class="pb-4">
-<h2>{{this.title}}</h2>
+<h3>{{this.title}}</h3>
 {{this.description}}
 </div>
 
@@ -20,13 +20,22 @@
   <thead>
     <tr>
       <!-- TODO: Make sure day property is defined -->
-      <th scope="col">{{this.day}}</th>
+      <th scope="col"><h5> {{this.day}} </h5></th>
     </tr>
   </thead>
 
   <tr>
     <!-- Name of exercise -->
-    <td> {{this.exercise.name}} </td>
+    <td> 
+    <div class="mb-1 mt-1"><h6>{{this.exercise.name}}</h6>
+    <div class="text-secondary mb-1 mt-1">Force: {{this.exercise.force}} </div>
+    <div class="text-secondary mb-1 mt-1">Level: {{this.exercise.level}} </div>
+    <div class="text-secondary mb-1 mt-1">primary muscles used: {{this.exercise.primaryMuscles}} </div>
+    <div class="text-secondary mb-1 mt-1">secondary muscles used: {{this.exercise.secondaryMuscles}} </div>
+    <div class="text-secondary mb-1 mt-1">mechanic: {{this.exercise.mechanic}} </div>
+    <div class="text-secondary mb-1 mt-1">equipment: {{this.exercise.equipment}} </div>
+    <div class="text-secondary mb-1 mt-1">category: {{this.exercise.category}} </div>
+    </td>
   </tr>
   {{/each}}
 </table>
