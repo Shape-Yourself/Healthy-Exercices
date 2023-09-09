@@ -32,10 +32,9 @@ router.post('/exercise-planner/delete/:planId', (req, res) => {
     const planId = req.params.planId;
     const userId = req.session.currentUser._id;
 
-    // Find weekly plans that the user created
+    // Find plan the user created and delete it
     Plan.findOneAndDelete({ _id: planId, userId })
-        // Then render the exercise planner hbs...
-        // and pass the "plans" data to it (now available as a variable in the exercise-planner hbs)
+        // Then redirect the user to the exercise planner page
         .then(() => {
             res.redirect('/plan/exercise-planner');
         })
@@ -117,7 +116,7 @@ router.post('/exercises-list/:planId', (req, res) => {
     // Find plan we're using & update it (by id, updates to apply)
     Plan.findByIdAndUpdate(planId, { selectedExercises: splitSelectedExercises })
         .then((updatedPlan) => {
-            // Redirect back to exercise
+            // Redirect back to exercise planner
             res.redirect('/plan/exercise-planner')
         })
         .catch((error) => {

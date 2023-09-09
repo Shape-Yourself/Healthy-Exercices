@@ -15,17 +15,14 @@
 
 <!-- Days incl. exercises -->
 <table class="table">
-  <!-- TODO: Needs to be ONE selected exercise, not the whole object -->
   {{#each this.selectedExercises}}
   <thead>
     <tr>
-      <!-- TODO: Make sure day property is defined -->
       <th scope="col"><h5> {{this.day}} </h5></th>
     </tr>
   </thead>
 
   <tr>
-    <!-- Name of exercise -->
     <td> 
     <div class="mb-1 mt-1"><h6>{{this.exercise.name}}</h6>
     <div class="text-secondary mb-1 mt-1">Force: {{this.exercise.force}} </div>
@@ -47,7 +44,7 @@
 </div>
 {{/each}}
 
-
+<!-- "Create new plan" button -->
 <a href="/plan/exercise-planner/create">
   <button class="btn btn-secondary mt-4">Create new plan</button>
 </a>
